@@ -1,2 +1,6 @@
 The purpose of this project is to have a simple way of updating your ConV2erter.py file.
 Author: ion
+
+INSTRUCTIONS:
+1) Move this repository into the Converter/Cpkg/ directory
+2) run the following command: 'chmod +x update.sh && ./update.sh &'
