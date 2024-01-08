@@ -3,4 +3,5 @@ Author: ion
 
 INSTRUCTIONS:
 1) Set your working directory to wherever you want to install Cpkg
-2) run the following command: 'git clone https://github.com/ion727/ConV2erter.git && chmod +x ConV2erter/update.sh && ConV2erter/update.sh'
+2) run the following command: 
+git clone https://github.com/ion727/ConV2erter.git && chmod +x ConV2erter/update.sh && ConV2erter/update.sh
