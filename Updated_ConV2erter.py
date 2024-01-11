@@ -52,9 +52,9 @@ def E(T,sr):
             l = extract_tb(exc_info()[-1])[-1][1]
             try:
                 from os import system
-                system("date >> ErrorLogs.txt")
-                with open("ErrorLogs.txt","r+b") as L:
+                system("date >> Cpkg/ErrorLogs.txt")
+                with open("Cpkg/ErrorLogs.txt","r+b") as L:
                     L.seek(-1,2)
                     L.write(" T '{}' in mode '{}' caused {} line {}.\n".format(b,sr,e,l).encode("utf-8"))
-                    print("Error successfully ErrorLogs.txt.")
+                    print("Error successfully saved to Cpkg/ErrorLogs.txt.")
             except: print("Unable to log error.")
