@@ -19,6 +19,7 @@ def R(T,M):
             EM, OM=r(1,93), r(1,93)
             EK,OK = str((EM-1)*OM),str(94-OM)
             En = "".join(i+str(r(0,9)) for i in "".join([str(ord(i)-32) for i in EK]+["13"]+[str(ord(i)-32) for i in OK]+["13"]+[str(Shift(T[i],i*EM if i%2==0 else OM)) for i in range(len(T)-1,-1,-1)]))
+            En = "".join(chr(int(Shift(chr(int(b)*10+32),a*3))+32) for a, b in enumerate(En))
         elif sr == "d":
             global v
             EM=OM=EK=OK=""
