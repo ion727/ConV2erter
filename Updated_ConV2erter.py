@@ -4,7 +4,7 @@ Created on Thu Oct 19 21:12:19 2023
 
 @author: ion
 """
-import os.path.realpath as opr
+from os import path.realpath as opr
 dirpath = opr(__file__).split("/Cpkg/ConV2erter.py")[0]
 def Et(T,sr):
         def TD(x): return (("0"*((len(str(x))-2)*-1)+str(x)) if len(str(x)) <= 2 and len(str(x)) > 0 else "")
