@@ -45,7 +45,7 @@ def Run(T,M):
     if sr == "e":T+=chr(r(3,12)*10+k+3)+chr(r(32,126))
     return T
     
-def ErrorCheck(T,sr):
+def Start(T,sr):
     b=T
     o=False
     try:return Run(T,sr)
