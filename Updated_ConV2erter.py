@@ -6,12 +6,7 @@ Created on Thu Oct 19 21:12:19 2023
 """
 import os.path.realpath as opr
 dirpath = opr(__file__).split("/Cpkg/ConV2erter.py")[0]
-
-def R(T,M):
-    from random import randint as r
-    global sr
-    sr=M[0].lower()
-    def Et(T,sr):
+def Et(T,sr):
         def TD(x): return (("0"*((len(str(x))-2)*-1)+str(x)) if len(str(x)) <= 2 and len(str(x)) > 0 else "")
         def Shift(x,sa): return ((TD((ord(x)+sa-2)%94)+"94") if ord(x)-32<0 else TD((ord(x)+sa-32)%94)) if sr == "e" else chr((ord(x)+sa-32)%94-v+32)
         En,V="",""
@@ -39,15 +34,21 @@ def R(T,M):
                 if T[len(T)-i-1]==chr(126):v+=30;c+=1;continue
                 En,v = str(En)+str(Shift(T[len(T)-i-1],0-((i-c)*EM if (i+c)%2 == 0 else OM))),0
         if sr in ("e","d"):return En
+            
+def Run(T,M):
+    from random import randint as r
+    global sr
+    sr=M[0].lower()
     k = int(str(ord(T[-2])-3)[-1]) if sr == "d" else r(1,3)
     if sr == "d":T = T[:-2]
     for i in range(k):T=Et(T,sr)
     if sr == "e":T+=chr(r(3,12)*10+k+3)+chr(r(32,126))
     return T
-def E(T,sr):
+    
+def ErrorCheck(T,sr):
     b=T
     o=False
-    try:return R(T,sr)
+    try:return Run(T,sr)
     except KeyboardInterrupt:o=True;print("\nSee you soon!")
     except Exception as e:
         if not o:
