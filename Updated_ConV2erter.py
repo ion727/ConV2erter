@@ -4,6 +4,9 @@ Created on Thu Oct 19 21:12:19 2023
 
 @author: ion
 """
+import os.path.realpath as opr
+dirpath = opr(__file__).split("/Cpkg/ConV2erter.py")[0]
+
 def R(T,M):
     from random import randint as r
     global sr
@@ -41,7 +44,7 @@ def R(T,M):
     if sr == "e":T+=chr(r(3,12)*10+k+3)+chr(r(32,126))
     return T
 def E(T,sr):
-        b=T
+    b=T
     o=False
     try:return R(T,sr)
     except KeyboardInterrupt:o=True;print("\nSee you soon!")
@@ -54,7 +57,7 @@ def E(T,sr):
             try:
                 from os import system
                 system("date >> Cpkg/ErrorLogs.txt")
-                with open("Cpkg/ErrorLogs.txt","r+b") as L:
+                with open(f"{dirpath}/Cpkg/ErrorLogs.txt","r+b") as L:
                     L.seek(-1,2)
                     L.write(f" T '{b}' in mode '{sr}' caused '{e}' line {l}.\n".encode())
                     print("Error successfully saved to Cpkg/ErrorLogs.txt.")
