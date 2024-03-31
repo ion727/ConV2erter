@@ -54,13 +54,13 @@ def ErrorCheck(T,sr):
         if not o:
             from sys import exc_info
             from traceback import extract_tb
+            from subprocess import run, DEVNULL
             print("An unexpected error occured.\n\nLogging error...")
             l = extract_tb(exc_info()[-1])[-1][1]
             try:
-                from os import system
-                system("date >> Cpkg/ErrorLogs.txt")
+                run(["date", ">>", f"{dirpath}/Cpkg/ErrorLogs.txt"],shell=True,stdout=DEVNULL,stderr=DEVNULL)
                 with open(f"{dirpath}/Cpkg/ErrorLogs.txt","r+b") as L:
                     L.seek(-1,2)
                     L.write(f" T '{b}' in mode '{sr}' caused '{e}' line {l}.\n".encode())
-                    print("Error successfully saved to Cpkg/ErrorLogs.txt.")
-            except: print("Unable to log error.")
+                    print(f"Error successfully saved to {dirpath}/Cpkg/ErrorLogs.txt.")
+            except Exception as e: print("Unable to log error:",e)
