@@ -5,7 +5,9 @@ Created on Thu Oct 19 21:12:19 2023
 @author: ion
 """
 from os.path import realpath as opr
+from random import randint as r
 dirpath = opr(__file__).split("/Cpkg/ConV2erter.py")[0]
+
 def Et(T,sr):
         def TD(x): return (("0"*((len(str(x))-2)*-1)+str(x)) if len(str(x)) <= 2 and len(str(x)) > 0 else "")
         def Shift(x,sa): return ((TD((ord(x)+sa-2)%94)+"94") if ord(x)-32<0 else TD((ord(x)+sa-32)%94)) if sr == "e" else chr((ord(x)+sa-32)%94-v+32)
@@ -36,7 +38,6 @@ def Et(T,sr):
         if sr in ("e","d"):return En
             
 def Run(T,M):
-    from random import randint as r
     global sr
     sr=M[0].lower()
     k = int(str(ord(T[-2])-3)[-1]) if sr == "d" else r(1,3)
@@ -45,22 +46,19 @@ def Run(T,M):
     if sr == "e":T+=chr(r(3,12)*10+k+3)+chr(r(32,126))
     return T
     
-def Start(T,sr):
-    b=T
+def Start(text="",selector=""):
+    b=text
     o=False
-    try:return Run(T,sr)
+    try:return Run(text,selector)
     except KeyboardInterrupt:o=True;print("\nSee you soon!")
     except Exception as e:
         if not o:
             from sys import exc_info
             from traceback import extract_tb
-            from subprocess import run, DEVNULL
             print("An unexpected error occured.\n\nLogging error...")
             l = extract_tb(exc_info()[-1])[-1][1]
             try:
-                run(["date", ">>", f"{dirpath}/Cpkg/ErrorLogs.txt"],shell=True,stdout=DEVNULL,stderr=DEVNULL)
-                with open(f"{dirpath}/Cpkg/ErrorLogs.txt","r+b") as L:
-                    L.seek(-1,2)
-                    L.write(f" T '{b}' in mode '{sr}' caused '{e}' line {l}.\n".encode())
-                    print(f"Error successfully saved to {dirpath}/Cpkg/ErrorLogs.txt.")
+                with open(f"{dirpath}/Cpkg/ErrorLogs.txt","a") as L:
+                        L.write(f" T '{b}' in mode '{selector}' caused '{e}' line {l}.\n")
+                        print(f"Error successfully saved to {dirpath}/Cpkg/ErrorLogs.txt.")
             except Exception as e: print("Unable to log error:",e)
